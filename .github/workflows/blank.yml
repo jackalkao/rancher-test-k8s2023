@@ -18,4 +18,4 @@ jobs:
       - name: list file
         run: |
           git clone https://github.com/jackalkao/rancher-test-k8s2023.git
-          ls stp-devops-helm/be-app-values/values/
+          ls be-app-values/values/
