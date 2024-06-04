@@ -16,9 +16,9 @@ jobs:
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
 
       - name: write tag
-#        shell: bash
+        shell: bash
         run: |
           echo "${GITHUB_SHA}"
-          version=${cut -c 2- <<< $GITHUB_SHA}
+          version=`echo ${GITHUB_SHA} | cut -c 1-8`
           echo $version
           echo "new tag: ${{ github.event.inputs.version }}"
