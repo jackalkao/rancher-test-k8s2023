@@ -1,4 +1,4 @@
-name: Hello Action
+name: Test Action
 
 on:
   push:
@@ -6,16 +6,20 @@ on:
       - main
 
 jobs:
-  hello:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Print hello message
+      - name: Print message
         run: echo "Hello Github Action"
 
       - name: Get latest commit SHA
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
 
+      - name: clone repo
+        with:
+          repository: jackalkao/rancher-test-k8s2023
+          token: ${{ secrets.ACCESS_TOKEN }}
+
       - name: list file
         run: |
-          git clone https://github.com/jackalkao/rancher-test-k8s2023.git
           ls be-app-values/values/
