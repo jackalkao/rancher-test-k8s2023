@@ -18,4 +18,4 @@ jobs:
       - name: list file
         run: |
           git clone git@github.com:SplashtopInc/stp-devops-helm.git
-          ls be-app-values/values/
+          ls stp-devops-helm/be-app-values/values/
