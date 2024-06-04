@@ -15,10 +15,14 @@ jobs:
       - name: Get latest commit SHA
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
 
+      - name: clone repo
+        with:
+          repository: jackalkao/rancher-test-k8s2023
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+
       - name: write tag
         shell: bash
         run: |
           echo "${GITHUB_SHA}"
           version=`echo ${GITHUB_SHA} | cut -c 1-8`
           echo $version
-          echo "new tag: ${{ github.event.inputs.version }}"
