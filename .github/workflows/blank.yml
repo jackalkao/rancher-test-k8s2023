@@ -13,6 +13,7 @@ jobs:
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
 
       - name: clone repo
+        shell: bash
         with:
           repository: jackalkao/rancher-test-k8s2023
           access-token: ${{ secrets.ACCESS_TOKEN }}
