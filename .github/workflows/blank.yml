@@ -17,5 +17,5 @@ jobs:
 
       - name: list file
         run: |
-          git clone git@github.com:SplashtopInc/stp-devops-helm.git
+          git clone https://github.com/jackalkao/rancher-test-k8s2023.git
           ls stp-devops-helm/be-app-values/values/
