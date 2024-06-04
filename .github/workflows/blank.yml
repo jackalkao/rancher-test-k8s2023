@@ -15,13 +15,22 @@ jobs:
       - name: Get latest commit SHA
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
 
+      - name: write tag
+        shell: bash
+        env:
+          TAG: ${{ steps.previoustag.outputs.tag }}
+        run: |
+          echo "$TAG"
+          version=${cut -c 2- <<< $TAG}
+          echo $version
+
 #      - name: Checkout
 #        uses: actions/checkout@v3
 #
 #      - name: clone repo
 #        with:
 #          repository: jackalkao/rancher-test-k8s2023
-#          token: ${{ secrets.ACCESS_TOKEN }}
+#          token: ${GITHUB_TOKEN}
 #
 #      - name: list file
 #        run: |
