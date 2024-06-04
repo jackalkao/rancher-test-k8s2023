@@ -9,9 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Print message
-        run: echo "Hello Github Action"
-
       - name: Get latest commit SHA
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
 
@@ -19,6 +16,8 @@ jobs:
         with:
           repository: jackalkao/rancher-test-k8s2023
           access-token: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          ls
 
       - name: write tag
         shell: bash
