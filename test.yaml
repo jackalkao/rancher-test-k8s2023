@@ -1,0 +1,364 @@
+# Custom values for tperd@apn1
+be-app:
+  new-relic:
+    license_key: &newRelicLicenseKey d0c7bc90026d21721ffaf59bc6cb653c88a6d97f
+    infra: 
+      enabled: &enabledNewRelicInfra false
+    nri_kube_events:
+      enabled: &enabledNewRelicNriKubeEvents false
+    apm: 
+      enabled: &enabledNewRelicApm false
+      appName: &newRelicApmAppName "Splashtop_EU_Container_DEV"
+      logLevel: &newRelicApmLogLevel "info"
+  awsAccountID: "385284847228"
+  awsRegion: &awsRegion ap-northeast-1
+  eksClusterName: &eksClusterName be-app-dev-apn1-0p8h1h
+  deployFQDN: &deployFQDN tperd.splashtop.eu
+  helpFQDN: &helpFQDN jp.aws-tperd.help123.app
+  appNodeSelector: &appNodeSelector devops
+  isProduction: &isProduction false
+  enabledNginxPrometheusExporter: true
+  enabledO11yCustomExporter: true
+
+  ### Common tag for deployment ###
+  be_app_image_tag: &be_app_image_tag "1ab5c437"
+  be_next_app_image_tag: &be_next_app_image_tag "97fc7971"
+  compu_list_image_tag: &compu_list_image_tag "3595b8f3"
+  timeout_server_image_tag: &timeout_server_image_tag "latest"
+  o11y_custom_exporter_image_tag: &o11y_custom_exporter_image_tag "v0.2.5"
+
+  teams_webhook_url: https://splashtop.webhook.office.com/webhookb2/9337e16f-c3c8-4caf-aeaa-3aec25be6f46@ee78438f-d19a-4ef6-874b-4a083ee0a508/IncomingWebhook/ce6daaf5c4614e80ac867ee997814c15/78e26588-e5ea-423c-a39a-e7fab0f4e500
+  teams_webhook_url_be: https://splashtop.webhook.office.com/webhookb2/df29e267-9da6-48f8-accf-07cffee99579@ee78438f-d19a-4ef6-874b-4a083ee0a508/IncomingWebhook/4b8fcba90b004d9185fd952112ee4cd2/6ab54486-cdd3-455d-82fa-52b27fe45a9d
+
+  replicas:
+    api: 0
+    api_nc: 0
+    api_nc_blue: 0
+    premium: 0
+    premium_nc: 0
+    premium_nc_blue: 0
+    relay_api: 0
+    relay_api_nc: 0
+    relay_api_nc_blue: 0
+    openapi: 0
+    my: 0
+    my_nc: 0
+    beta_my: 0
+    delayed_job: 0
+    scheduler_daemon: 0
+    shoryuken: 0
+    next_app: 0
+    compu_list: 0
+    redis_monitor: 0
+
+  rollingUpdate:
+    maxSurge: 25%
+    maxUnavailable: 0%
+
+  image:
+    be_app:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/be-app-nonprod
+      pullPolicy: Always
+      tag: *be_app_image_tag
+    api:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/be-app-nonprod
+      pullPolicy: Always
+      tag: *be_app_image_tag
+    api_nc_blue:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/be-app-nonprod
+      pullPolicy: Always
+      tag: *be_app_image_tag
+    premium:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/be-app-nonprod
+      pullPolicy: Always
+      tag: *be_app_image_tag
+    premium_nc_blue:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/be-app-nonprod
+      pullPolicy: Always
+      tag: *be_app_image_tag
+    relay_api:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/be-app-nonprod
+      pullPolicy: Always
+      tag: *be_app_image_tag
+    relay_api_nc_blue:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/be-app-nonprod
+      pullPolicy: Always
+      tag: *be_app_image_tag
+    compu_list:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/compu-list-nonprod
+      pullPolicy: Always
+      tag: *compu_list_image_tag
+    next_app:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/be-next-app-nonprod
+      pullPolicy: Always
+      tag: *be_next_app_image_tag
+    timeout_server:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/splashtop/timeout-server
+      pullPolicy: Always
+      tag: *timeout_server_image_tag
+    o11y_custom_exporter:
+      repository: 964543278669.dkr.ecr.us-west-2.amazonaws.com/o11y-custom-exporter-nonprod
+      tag: *o11y_custom_exporter_image_tag
+
+  db_init:
+    db_admin_id: berdsadmin
+    db_admin_password: Ghq2IWAMBaOIvjJE8NwD
+    db_character_set: utf8
+    db_collate: utf8_general_ci
+    db_read_id: mysql_export
+    db_read_password: XXLaxfY1UBkBGiwF65HoCVIrGj4g0hFi
+    db1_url: st2-db-master-apn1.internal.tperd.splashtop.eu
+    db1_main_db: pro_devel
+    db1_user_id: pro_devel
+    db1_user_password: pro_devel
+    db2_url: st2-db-master-apn1.internal.tperd.splashtop.eu
+    db2_log_db: log_sharding
+    db2_user_id: log_sharding
+    db2_user_password: log_sharding
+
+  es_init:
+    es_master_user_name: esdbadmin
+    es_master_user_password: Spl@shT0P
+    es_backend_roles: |-
+      "\"arn:aws:iam::385284847228:role/be-app-dev-apn1-0p8h1h-ng-iam-role\",\"arn:aws:iam::385284847228:role/premium-inventory-lambda-execution-role-es-db-dev-apn1-bm1ue24b\""
+
+  ingress:
+    enabled: true
+    isProduction: *isProduction
+    accessLogsS3Bucket: ""
+    apiWafv2AclArn: ""
+    betamyWafv2AclArn: ""
+    myWafv2AclArn: ""
+    openapiWafv2AclArn: ""
+    premiumWafv2AclArn: ""
+    relayapiWafv2AclArn: ""
+    certArnApi: arn:aws:acm:ap-northeast-1:385284847228:certificate/c9152e6e-fb32-4b53-ab70-0c07ea3fa184
+    certArnDomain: arn:aws:acm:ap-northeast-1:385284847228:certificate/c9152e6e-fb32-4b53-ab70-0c07ea3fa184
+    certArnHelpDomain: arn:aws:acm:ap-northeast-1:385284847228:certificate/ce52dc78-5c62-42a8-9bf8-aea55bc512c1
+    targetGroupAttributes: deregistration_delay.timeout_seconds=30
+    healthcheckTimeoutSeconds: 10
+    apiIdleTimeoutSeconds: idle_timeout.timeout_seconds=30
+    dropInvalidHeaderFields: true
+    api:
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '10'
+      alb.ingress.kubernetes.io/success-codes: '200'
+      alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+      alb.ingress.kubernetes.io/healthcheck-path: /api/fulong/v3/elb-health-check
+    premium:
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '10'
+      alb.ingress.kubernetes.io/success-codes: '200'
+      alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+      alb.ingress.kubernetes.io/healthcheck-path: /api/fulong/v3/elb-health-check
+    relay_api:
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '120'
+      alb.ingress.kubernetes.io/success-codes: '200,302,301'
+      alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/unhealthy-threshold-count: '10'
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: '300'
+      alb.ingress.kubernetes.io/healthcheck-path: /version.txt
+    my:
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '10'
+      alb.ingress.kubernetes.io/success-codes: '200'
+      alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+      alb.ingress.kubernetes.io/healthcheck-path: /api/fulong/v3/elb-health-check
+    beta_my:
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '10'
+      alb.ingress.kubernetes.io/success-codes: '200'
+      alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+      alb.ingress.kubernetes.io/healthcheck-path: /api/fulong/v3/elb-health-check
+    openapi:
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '10'
+      alb.ingress.kubernetes.io/success-codes: '200'
+      alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+      alb.ingress.kubernetes.io/healthcheck-path: /api/fulong/v3/elb-health-check
+    next_app:
+      alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '10'
+      alb.ingress.kubernetes.io/success-codes: '200'
+      alb.ingress.kubernetes.io/healthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+      alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15'
+      alb.ingress.kubernetes.io/healthcheck-path: /api/status
+
+  affinity:
+    # keep "affinity.enabled: true" for use be-app-helm <= v3.12.5 
+    enabled: true
+    api:
+      enabled: false
+    relay_api: 
+      enabled: false
+    premium: 
+      enabled: false
+    my:
+      enabled: true
+    beta_my:
+      enabled: true
+    compu_list:
+      enabled: false
+    next_app:
+      enabled: true
+    openapi:
+      enabled: false
+    redis_monitor:
+      enabled: true
+    scheduler_daemon:
+      enabled: true
+    shoryuken:
+      enabled: true
+    delayed_job:
+      enabled: true
+
+  nodeSelector:
+    enabled: true
+
+  tolerations:
+    enabled: true
+
+  cache:
+    enabled: false
+
+  serviceAccount:
+    create: false
+    name: be-app-serviceaccount
+
+  db_migrate:
+    enabled: true
+
+  eks:
+    cluster: *eksClusterName
+    enabled: true
+
+  domain: *deployFQDN
+  help_domain: *helpFQDN
+
+  newrelic-infrastructure:
+    enabled: *enabledNewRelicInfra
+    licenseKey: *newRelicLicenseKey
+    cluster: *eksClusterName
+    fullnameOverride: newrelic-infrastructure
+    config:
+      custom_attributes:
+        cluster: *eksClusterName
+
+  nri-kube-events:
+    enabled: *enabledNewRelicNriKubeEvents
+    fullnameOverride: nri-kube-events
+    licenseKey: *newRelicLicenseKey
+    cluster: *eksClusterName
+    nodeSelector:
+      app: *appNodeSelector
+
+  env:
+    terminationGracePeriodSeconds: 70
+    use_elasticache: true
+    redis_master_url: :cjsbRm1tSoGAQXS3tVkpT025FpDCB5FF@be-redis-master-eu-master-apn1.internal.tperd.splashtop.eu:6379
+    redis_timeout_url: :YVpxanfe2zYoD3rv4NRSG0JoKL1S9Ip9@be-redis-timeout-eu-master-apn1.internal.tperd.splashtop.eu:6379
+    aws_sqs_prefix: aws-tperd-
+    newrelic_enabled: *enabledNewRelicApm
+    newrelic_license_key: *newRelicLicenseKey
+    newrelic_app_name: *newRelicApmAppName
+    newrelic_log_level: *newRelicApmLogLevel
+    vault_addr: https://vault.aws-rd.splashtop.com:443
+    app_serviceaccount_name: be-app-serviceaccount
+    vault_app_role: be-app-dev-apn1-0p8h1h-role-be-app
+    vault_k8s_auth_path: auth/dev-k8s/tperd/be-app-dev-apn1-0p8h1h/be-app
+    vault_secret_path: dev/tperd/be-app-dev-apn1-0p8h1h/be-app
+    vault_secret_name: be-app-env
+    vault_skip_verify: false
+    vault_check_period: "7 */2 * * *"
+    vault_sns_arn: ""
+    vault_sns_subject: "[TPERD DEV(JP)] Vault Cluster Monitoring"
+    vault_sns_message: "GStun RD Vault Cluster FAILED!"
+
+  lifecycle:
+    preStop:
+      exec:
+        command: ["/bin/sh", "-c", "sleep 40"]
+
+  resources:
+    api:
+      requests:
+        #cpu: 1000m
+        memory: 4800Mi
+        ephemeral-storage: 1Gi
+      limits:
+        #cpu: 2000m
+        memory: 7000Mi
+        ephemeral-storage: 2Gi
+    openapi:
+      requests:
+        #cpu: 1000m
+        memory: 4800Mi
+        ephemeral-storage: 1Gi
+      limits:
+        #cpu: 2000m
+        memory: 7000Mi
+        ephemeral-storage: 2Gi
+    my:
+      requests:
+        #cpu: 1000m
+        memory: 6000Mi
+        ephemeral-storage: 1Gi
+      limits:
+        #cpu: 2000m
+        memory: 7000Mi
+        ephemeral-storage: 2Gi
+    beta_my:
+      requests:
+        #cpu: 1000m
+        memory: 3600Mi
+        ephemeral-storage: 1Gi
+      limits:
+        #cpu: 2000m
+        memory: 7000Mi
+        ephemeral-storage: 2Gi
+    delayed_job:
+      requests:
+        memory: 500Mi
+        ephemeral-storage: 1Gi
+      limits:
+        memory: 1000Mi
+        ephemeral-storage: 2Gi
+    scheduler_daemon:
+      requests:
+        memory: 1000Mi
+        ephemeral-storage: 1Gi
+      limits:
+        memory: 2000Mi
+        ephemeral-storage: 2Gi
+    shoryuken:
+      requests:
+        memory: 600Mi
+        ephemeral-storage: 1Gi
+      limits:
+        memory: 1200Mi
+        ephemeral-storage: 2Gi
+    redis_monitor:
+      requests:
+        memory: 100Mi
+        ephemeral-storage: 1Gi
+      limits:
+        memory: 200Mi
+        ephemeral-storage: 2Gi
+    next_app:
+      requests:
+        memory: 150Mi
+        ephemeral-storage: 1Gi
+      limits:
+        memory: 300Mi
+        ephemeral-storage: 2Gi
+    compu_list:
+      requests:
+        memory: 4800Mi
+      limits:
+        cpu: 1500m
+        memory: 7000Mi
