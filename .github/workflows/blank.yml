@@ -15,11 +15,15 @@ jobs:
       - name: Get latest commit SHA
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
 
-      - name: clone repo
-        with:
-          repository: jackalkao/rancher-test-k8s2023
-          token: ${{ secrets.ACCESS_TOKEN }}
-
-      - name: list file
-        run: |
-          ls be-app-values/values/
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#
+#      - name: clone repo
+#        with:
+#          repository: jackalkao/rancher-test-k8s2023
+#          token: ${{ secrets.ACCESS_TOKEN }}
+#
+#      - name: list file
+#        run: |
+#          ls be-app-values/values/
+#
