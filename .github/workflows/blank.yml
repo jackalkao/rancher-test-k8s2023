@@ -16,23 +16,9 @@ jobs:
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
 
       - name: write tag
-        shell: bash
-        env:
-          TAG: ${{ steps.previoustag.outputs.tag }}
+#        shell: bash
         run: |
-          echo "$TAG"
-          version=${cut -c 2- <<< $TAG}
+          echo "${GITHUB_SHA}"
+          version=${cut -c 2- <<< $GITHUB_SHA}
           echo $version
-
-#      - name: Checkout
-#        uses: actions/checkout@v3
-#
-#      - name: clone repo
-#        with:
-#          repository: jackalkao/rancher-test-k8s2023
-#          token: ${GITHUB_TOKEN}
-#
-#      - name: list file
-#        run: |
-#          ls be-app-values/values/
-#
+          echo "new tag: ${{ github.event.inputs.version }}"
