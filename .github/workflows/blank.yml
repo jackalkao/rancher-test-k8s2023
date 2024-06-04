@@ -2,7 +2,7 @@ name: Hello Action
 
 on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -14,3 +14,9 @@ jobs:
 
       - name: Get latest commit SHA
         run: echo "The latest commit SHA is ${GITHUB_SHA}."
+
+      - name: list file
+        run: |
+        git clone git@github.com:SplashtopInc/stp-devops-helm.git
+        ls be-app-values/values/
+    - run: git push origin maste
